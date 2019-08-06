@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import ToDoList from './ToDoList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(){
+    super();
+
+    this.state = {
+
+      ToDoItems: [], //todoのカテゴリとタイトルを保存するstate
+    
+      }
+  }
+
+  handleAddToDo(e){ //新たなtoDoItemをつくる
+    const category = e.target.value["category"];
+    const title = e.target.value["title"];
+    console.log(category, title);
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <form >
+          <input 
+            type = "text"
+            id = "category"
+            placeholder = "category"
+            onChange = { (e) => { this.handleAddToDo(e)}}
+          />
+          <textarea 
+            id = "title"
+            placeholder = "title"
+            onChange = { (e) => { this.handleAddToDo(e)}}
+          />
+          <input 
+          type = "button" 
+          value ="登録" 
+          />
+        </form>
+        <ToDoList 
+          category = "aaa"
+          title = "aaa"
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
