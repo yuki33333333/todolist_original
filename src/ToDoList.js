@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './ToDoList.css';
 
 class ToDoList extends Component {
     render(){
@@ -6,11 +7,9 @@ class ToDoList extends Component {
         const {category, title} = this.props;
 
         return(
-            <div>
-             
+            <div className="toDoCards">
                 <p>{category}</p>
                 <p>{title}</p>
-                
             </div>
         );
     

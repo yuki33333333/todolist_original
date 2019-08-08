@@ -8,41 +8,66 @@ class App extends Component {
 
     this.state = {
 
-      ToDoItems: [], //todoのカテゴリとタイトルを保存するstate
+      toDoItems: [] //todoのカテゴリとタイトルを保存するstate
     
       }
   }
 
-  handleAddToDo(e){ //新たなtoDoItemをつくる
-    const category = e.target.value["category"];
-    const title = e.target.value["title"];
-    console.log(category, title);
-  }
 
   render(){
     return (
       <div className="App">
-        <form >
+        <form 
+          className="App_form"
+          onSubmit={e => {
+
+            e.preventDefault();
+
+            const categoryElement = e.target.elements["category"]
+            const titleElement = e.target.elements["title"];
+            
+            console.log(categoryElement.value);
+
+            this.setState(
+              {
+                toDoItems: this.state.toDoItems.concat(
+                  {
+                    category: categoryElement.value,
+                    title: titleElement.value
+                  }
+                )
+              },
+              //stateの変更後に入力した値を空にする
+              () => {
+                categoryElement.value = "";
+                titleElement.value = "";
+              }
+            );
+
+          }} 
+        >
           <input 
-            type = "text"
-            id = "category"
-            placeholder = "category"
-            onChange = { (e) => { this.handleAddToDo(e)}}
-          />
-          <textarea 
-            id = "title"
+            type="text"
+            placeholder="category"
+            id="category"
+          /><br/>
+          <input 
             placeholder = "title"
-            onChange = { (e) => { this.handleAddToDo(e)}}
-          />
-          <input 
-          type = "button" 
-          value ="登録" 
-          />
+            id="title"
+          /><br/>
+          <button type="submit">Add</button>
         </form>
-        <ToDoList 
-          category = "aaa"
-          title = "aaa"
-        />
+        <div>
+          {/*ToDoItems配列の要素数分ToDoListコンポーネントを展開*/}
+          {this.state.toDoItems.map(todo => (
+            <ToDoList 
+            key={todo.title}
+            category={todo.category}
+            title={todo.title}
+            />
+          ))}
+        </div>
+        
       </div>
     );
   }
