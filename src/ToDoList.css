@@ -1,2 +1,36 @@
-.App_form {}
-   
+.toDoCards {
+    margin: 12px;
+    border-radius: 4px;
+    width: 300px;
+    background-color: #e0ffef;
+    box-shadow: 1px 2px 5px 3px rgba(0,0,0,.1);
+    padding: 4px 2px;
+    display: flat;
+  }
+  
+  .category {
+    font-size: 14px;
+    height: 25px;
+    padding:0px 4px;
+    color: gray;
+    border-bottom: 1px solid #7fffbf;
+    text-align: center;
+    
+  }
+  
+  .title {
+    font-size: 14px;
+    word-wrap: break-word;
+    text-align: center;
+  }   
+
+  .toDoCards button {
+    width: 300px;
+    border: 1px solid #ccc;
+    background: white;
+    padding: 4px 8px;
+    border-radius: 2px;
+    margin: 8px 2px;
+    cursor: pointer;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,.1);
+  }

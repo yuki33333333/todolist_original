@@ -13,6 +13,10 @@ class App extends Component {
       }
   }
 
+  handleDelete(e){
+    console.log(this.state);
+    console.log(e);
+  }
 
   render(){
     return (
@@ -26,7 +30,6 @@ class App extends Component {
             const categoryElement = e.target.elements["category"]
             const titleElement = e.target.elements["title"];
             
-            console.log(categoryElement.value);
 
             this.setState(
               {
@@ -46,15 +49,17 @@ class App extends Component {
 
           }} 
         >
-          <input 
+          <input
+            className="category_form" 
             type="text"
             placeholder="category"
             id="category"
-          /><br/>
-          <input 
+          />
+          <textarea
+            className="title_form"
             placeholder = "title"
             id="title"
-          /><br/>
+          />
           <button type="submit">Add</button>
         </form>
         <div>
@@ -63,7 +68,8 @@ class App extends Component {
             <ToDoList 
             key={todo.title}
             category={todo.category}
-            title={todo.title}
+            title={todo.title} 
+            handleDelete={()=>{this.handleDelete();}}
             />
           ))}
         </div>
