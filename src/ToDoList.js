@@ -1,42 +1,25 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './ToDoList.css';
-import PropTypes from 'prop-types';
 
-const propTypes = {
-    handleDelete: PropTypes.func,
-};
+const ToDoList = props => (
 
-class ToDoList extends Component {
-
-    clickButton(button){
-        console.log(this.state);
-        console.log(button);
-        return this.props.handleDelete(button);
-    }
-
-    render(){
-
-        const {category, title} = this.props;
-
-        return(
-            <div className="toDoCards">
-                <div className="category">
-                    <p>{category}</p>
-                </div>
-                <div className="title">
-                    <p>{title}</p>
-                </div>
-                <div>
-                    <button 
-                        onClick={ ()=>{this.clickButton(this);}}
-                    >
-                    Delete
-                    </button>
-                </div>
-            </div>
+    <div className="toDoCards">
+        <div className="category">
+            <p>{props.category}</p>
+        </div>
+        <div className="title">
+            <p>{props.title}</p>
+        </div>
+        <div>
+        <button 
+            onClick={()=>{
+                props.handleDelete(props);
+            }}
+        >Delete
+        </button>
+        </div>
+    </div>
         );
-    
-    }
-}
+
 
 export default ToDoList;

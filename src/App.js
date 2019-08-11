@@ -3,34 +3,37 @@ import './App.css';
 import ToDoList from './ToDoList';
 
 class App extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.state = {
 
       toDoItems: [] //todoのカテゴリとタイトルを保存するstate
     
-      }
-  }
+    }
+  };
 
-  handleDelete(e){
-    console.log(this.state);
-    console.log(e);
-  }
+  handleDelete(props){
+    console.log(props);
+    this.setState({
+      toDoItems: this.state.toDoItems.filter(x => x!== props)
+    });
+  
+  };
 
   render(){
     return (
       <div className="App">
         <form 
           className="App_form"
-          onSubmit={e => {
-
+          
+          onSubmit={ (e) => {
+            
             e.preventDefault();
 
-            const categoryElement = e.target.elements["category"]
+            const categoryElement = e.target.elements["category"];
             const titleElement = e.target.elements["title"];
             
-
             this.setState(
               {
                 toDoItems: this.state.toDoItems.concat(
@@ -55,7 +58,7 @@ class App extends Component {
             placeholder="category"
             id="category"
           />
-          <textarea
+          <input
             className="title_form"
             placeholder = "title"
             id="title"
@@ -69,7 +72,7 @@ class App extends Component {
             key={todo.title}
             category={todo.category}
             title={todo.title} 
-            handleDelete={()=>{this.handleDelete();}}
+            handleDelete={this.handleDelete}
             />
           ))}
         </div>
