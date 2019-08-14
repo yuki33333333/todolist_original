@@ -2,7 +2,6 @@ import React from 'react';
 import './ToDoList.css';
 
 const ToDoList = props => (
-
     <div className="toDoCards">
         <div className="category">
             <p>{props.category}</p>
@@ -11,7 +10,7 @@ const ToDoList = props => (
             <p>{props.title}</p>
         </div>
         <div>
-        <button 
+        <button
             onClick={()=>{
                 props.handleDelete(props);
             }}
@@ -19,7 +18,7 @@ const ToDoList = props => (
         </button>
         </div>
     </div>
-        );
+);
 
 
 export default ToDoList;
